@@ -12,7 +12,6 @@ import static org.apache.http.HttpStatus.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 public class CourierLoginTest {
     private CourierMethods courierMethods;
@@ -29,8 +28,8 @@ public class CourierLoginTest {
 
     @Test
     @DisplayName("Проверка ответа при авторизации курьера" )
-    public void LoginCourierTest(){
-        ValidatableResponse responseCreate = courierMethods.create(courier);
+    public void loginCourierTest(){
+        courierMethods.create(courier);
         ValidatableResponse responseLogin = courierMethods.login(Credentials.from(courier));
         id = responseLogin.extract().path("id");
         int actualStatusCode = responseLogin.extract().statusCode();
@@ -41,7 +40,7 @@ public class CourierLoginTest {
 
     @Test
     @DisplayName("Проверка ответа при авторизации с неверными данными")
-    public void LoginIncorrectCredentialsTest(){
+    public void loginIncorrectCredentialsTest(){
         courier = CourierData.incorrectCredentials();
         ValidatableResponse responseLogin = courierMethods.login(Credentials.from(courier));
         int actualStatusCode = responseLogin.extract().statusCode();
@@ -53,7 +52,7 @@ public class CourierLoginTest {
 
     @Test
     @DisplayName("Проверка ответа при авторизации без указания пароля")
-    public void LoginWithoutLoginTest(){
+    public void loginWithoutLoginTest(){
         courier = CourierData.withoutLogin();
         ValidatableResponse responseLogin = courierMethods.login(Credentials.from(courier));
         int actualStatusCode = responseLogin.extract().statusCode();

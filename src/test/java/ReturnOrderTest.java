@@ -18,7 +18,7 @@ public class ReturnOrderTest {
 
     @Test
     @DisplayName("Проверка ответа при возвращении списка заказа")
-    public void ReturnOrderTest() {
+    public void returnOrderListTest() {
         ValidatableResponse responseOrderList = orderMethod.returnOrderList();
         ArrayList actualList = responseOrderList.extract().path("orders");
         int ordersSize = actualList.size();

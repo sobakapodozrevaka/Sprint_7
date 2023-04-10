@@ -8,7 +8,6 @@ public class OrderMethod {
 
     public static final String BASE_URL = "https://qa-scooter.praktikum-services.ru";
     private static String PATH = "/api/v1/orders";
-    private final String PATH_CANCEL = PATH + "/cancel";
 
     public OrderMethod() {RestAssured.baseURI = BASE_URL;
     }

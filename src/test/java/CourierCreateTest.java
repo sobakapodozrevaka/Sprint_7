@@ -25,7 +25,7 @@ public class CourierCreateTest {
 
     @Test
     @DisplayName("Проверка ответа при создании курьера" )
-    public void CreateCourierTest() {
+    public void createCourierTest() {
         ValidatableResponse responseCreate = courierMethods.create(courier);
         ValidatableResponse responseLogin = courierMethods.login(Credentials.from(courier));
         id = responseLogin.extract().path("id");
@@ -37,7 +37,7 @@ public class CourierCreateTest {
 
     @Test
     @DisplayName("Проверка ответа при создании курьера без логина" )
-    public void CreateCourierWithoutLoginTest() {
+    public void createCourierWithoutLoginTest() {
         courier = CourierData.withoutLogin();
         ValidatableResponse responseCreate = courierMethods.create(courier);
         int actualStatusCode = responseCreate.extract().statusCode();
@@ -48,8 +48,8 @@ public class CourierCreateTest {
 
     @Test
     @DisplayName("Проверка ответа при создании двух курьеров с одинаковыми данными" )
-    public void СreateDoubleCourierTest(){
-        ValidatableResponse responseCreate = courierMethods.create(courier);
+    public void createDoubleCourierTest(){
+        courierMethods.create(courier);
         ValidatableResponse responseCreateDouble = courierMethods.create(courier);
         int actualCode = responseCreateDouble.extract().path("code" );
 
@@ -61,8 +61,8 @@ public class CourierCreateTest {
 
     @Test
     @DisplayName("Проверка ответа при создании двух курьеров с одинаковыми логинами" )
-    public void СreateCourierWithSameLoginTest(){
-        ValidatableResponse responseCreate = courierMethods.create(courier);
+    public void createCourierWithSameLoginTest(){
+        courierMethods.create(courier);
         courier = CourierData.sameLogin();
         ValidatableResponse responseCreateSameLogin = courierMethods.create(courier);
         int actualCode = responseCreateSameLogin.extract().path("code" );
